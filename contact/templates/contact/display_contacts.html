@@ -1,0 +1,13 @@
+{% extends 'contact/base.html' %}
+
+{% block base_content %}
+
+Display all content of {{user.username}}
+<br>
+Logged in as {{user.username}}
+    <form action="{% url 'accounts:logoutuser' %}" method = 'POST'>
+        {% csrf_token %}
+        <button type = 'submit'>Logout</button>
+    </form>
+
+{% endblock base_content %}

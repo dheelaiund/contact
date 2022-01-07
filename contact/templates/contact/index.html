@@ -1,0 +1,16 @@
+{% extends 'contact/base.html' %}
+
+{% block base_content %}
+{% if user.is_authenticated %}
+    Logged in as {{user.username}}
+    <form action="{% url 'accounts:logoutuser' %}" method = 'POST'>
+        {% csrf_token %}
+        <button type = 'submit'>Logout</button>
+    </form>
+{% else %}
+    <ul>
+        <li> <a href="{% url 'accounts:registeruser' %}">Register</a> </li>
+        <li> <a href="{% url 'accounts:loginuser' %}">Login</a> </li>
+    </ul>
+{% endif %}
+{% endblock base_content %}
