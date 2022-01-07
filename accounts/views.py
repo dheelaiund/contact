@@ -7,8 +7,6 @@ from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse
 # Create your views here.
 
-class Home(TemplateView):
-    template_name = 'accounts/home.html'
 
 class RegisterUser(TemplateView):
     template_name = 'accounts/registeruser.html'
@@ -28,16 +26,14 @@ class RegisterUser(TemplateView):
                     request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('accounts:home')
+                return redirect('contact:display')
             except IntegrityError:
-                return render(request, self.template_name, {'form': form})
+                return render(request, self.template_name, {'form': form, 'error': 'Username already taken'})
 
         else:
-            return render(request, self.template_name, {'form': form})
+            return render(request, self.template_name, {'form': form, 'error':'Passwords do not match'})
             
-            
-
-        return render(request, self.template_name, {'form': form})
+             
 
 
 class LoginUser(TemplateView):
@@ -54,11 +50,17 @@ class LoginUser(TemplateView):
             request, username=request.POST["username"], password=request.POST["password"])
         if user:
             login(request, user)
-            return redirect('accounts:home')
+            return redirect('contact:display')
         else:
-            print('user do no exist')
-            return render(request, self.template_name, {'form': self.authentication_form()})
+            
+            return render(request, self.template_name, {'form': self.authentication_form(), 'error': 'Username not registered'})
 
 
 class LogoutUser(TemplateView):
-    template_name = 'accounts/logoutuser.html'
+    
+    
+        
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('contact:index')
+
