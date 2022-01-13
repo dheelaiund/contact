@@ -1,21 +1,22 @@
 from django.shortcuts import render,redirect
-from django.views.generic import TemplateView,View
+from django.views.generic import TemplateView,View,FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+from .models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse
+
 # Create your views here.
 
 
-class RegisterUser(TemplateView):
+class RegisterUser(FormView):
     template_name = 'accounts/registeruser.html'
     
-
+   
 
     def get(self, request, *args, **kwargs):
         # return super().get(request, *args, **kwargs)
-        return render(request, self.template_name,{})
+        return render(request, self.template_name)
 
     def post(self, request, *args, **kwargs):
         
