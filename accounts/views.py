@@ -10,6 +10,8 @@ from django.urls import reverse
 
 
 class RegisterUser(FormView):
+
+    model = User
     template_name = 'accounts/registeruser.html'
     
    
@@ -26,7 +28,7 @@ class RegisterUser(FormView):
                     request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('contact:display')
+                return redirect('contact:displaycontacts')
             except IntegrityError:
                 return render(request, self.template_name, {'error': 'Username already taken'})
 
@@ -48,7 +50,7 @@ class LoginUser(TemplateView):
             request, username=request.POST["username"], password=request.POST["password"])
         if user:
             login(request, user)
-            return redirect('contact:display')
+            return redirect('contact:displaycontacts')
         else:
             
             return render(request, self.template_name, {'error': 'Incorrect Username or Password'})
