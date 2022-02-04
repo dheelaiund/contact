@@ -1,5 +1,11 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, DetailView, ListView
+from audioop import reverse
+from django.shortcuts import render, HttpResponseRedirect
+from django.views.generic import (
+    TemplateView,
+    DetailView,
+    ListView,
+    CreateView,
+)
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -7,7 +13,6 @@ from django.urls import reverse_lazy
 from django.http import Http404
 from django.views import generic
 
-from braces.views import SelectRelatedMixin
 
 from . import forms
 from . import models
@@ -25,7 +30,7 @@ class Index(TemplateView):
 
 
 class UserAllContacts(LoginRequiredMixin, ListView):
-    model = models.UserContacts
+    model = models.UserContactModel
     template_name = "contact/all_contacts.html"
     context_object_name = "contacts"
 
@@ -37,7 +42,20 @@ class UserAllContacts(LoginRequiredMixin, ListView):
         return context
 
 
-class ContactDetails(DetailView):
-    model = models.UserContacts
+class ContactDetails(LoginRequiredMixin,DetailView):
+    model = models.UserContactModel
     template_name = "contact/contact_details.html"
     context_object_name = "cd"
+
+
+class CreateContact(LoginRequiredMixin,CreateView):
+    model = models.UserContactModel
+    form_class = forms.UserContactForm
+    template_name = "contact/create.html"
+    success_url = reverse_lazy('contact:displaycontacts')
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
