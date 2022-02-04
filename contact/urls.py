@@ -9,5 +9,6 @@ urlpatterns = [
             name="displaycontacts"),
     re_path(r"^details/(?P<username>[-\w]+)/(?P<pk>\d+)/$",
             views.ContactDetails.as_view(), name="contactdetails"),
+    re_path(r"create/$", views.CreateContact.as_view(), name="create"),
 
 ]

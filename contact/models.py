@@ -9,22 +9,22 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class UserContacts(models.Model):
+class UserContactModel(models.Model):
 
     avail_gender = (
-        ('M', 'MALE'),
-        ('F', 'Female'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
     )
 
     phone_regex = RegexValidator(
-        regex=r'^\+?1?\d{2,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+        regex=r'^\+?1?\d{2,15}$', message="Phone number must contain only numbers. Up to 15 digits allowed.")
 
     user = models.ForeignKey(
         User, related_name="foruser", on_delete=models.CASCADE)
     firstname = models.CharField(max_length=25)
     lastname = models.CharField(max_length=25)
     nickname = models.CharField(max_length=25, blank=True)
-    gender = models.CharField(max_length=1, choices=avail_gender, blank=True)
+    gender = models.CharField(max_length=7, choices=avail_gender, blank=True)
     address = models.CharField(max_length=125, blank=True)
     phone_number = models.CharField(max_length=15, validators=[
                                     phone_regex], blank=True)
