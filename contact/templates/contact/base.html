@@ -27,7 +27,10 @@
 
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact:displaycontacts' %}" style="color: #FFFBBD;">My
+                            Contacts</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'accounts:logoutuser' %}" style="color: #FFFBBD;">Logout</a>
                     </li>

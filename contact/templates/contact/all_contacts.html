@@ -1,27 +1,37 @@
 {% extends 'contact/base.html' %} {% block base_content %}
 <br>
-{% if contacts %}
+
 <div class="container">
     <div class="row row-cols-3">
-        {% for eachcontact in contacts %}
         <div class="col">
-            <div class="card p-3 mb-2 bg-warning text-dark" style="width: 18rem">
+            <div class="card p-3 mb-2 bg-warning text-dark" style="width: 20rem">
                 <img src="https://source.unsplash.com/random/50×25/?sun" class="card-img-top" alt="..." />
                 <div class="card-body">
                     <h5 class="card-title">
-                        <span>{{eachcontact.firstname}} {{eachcontact.lastname}}<span>
+                        <a style="text-decoration: none;" href=" {% url 'contact:create' %}">Add New</a>
                     </h5>
                 </div>
+
+            </div>
+        </div>
+        {% for eachcontact in contacts %}
+        <div class="col">
+            <div class="card p-3 mb-2 bg-warning text-dark" style="width: 20rem">
+                <img src="https://source.unsplash.com/random/50×25/?sun" class="card-img-top" alt="..." />
                 <div class="card-body">
-                    <a href="{% url 'contact:contactdetails' eachcontact.user eachcontact.id %}"
-                        class="card-link">View</a>
-                    <a href="#" class="card-link">Update</a>
-                    <a href="#" class="card-link">Delete</a>
+                    <h5 class="card-title">
+                        <a style="text-decoration: none;"
+                            href="{% url 'contact:contactdetails' eachcontact.user eachcontact.id %}">
+                            <span>{{eachcontact.firstname}}
+                                {{eachcontact.lastname}}<span></a>
+                    </h5>
                 </div>
+
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
 
-{% else %} Add some contacts {% endif %} {% endblock base_content %}
+
+{% endblock base_content %}
