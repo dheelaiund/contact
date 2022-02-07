@@ -14,7 +14,7 @@
         {% endfor %}
         {% endfor %}
         {% endif %}
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             {% for field in form %}
@@ -24,7 +24,7 @@
             </div>
             <br>
             {% endfor %}
-            <input type="submit" value="Save">
+            <input class="btn btn-primary" type="submit" value="Save">
         </form>
     </div>
 </div>
