@@ -47,3 +47,15 @@ class UserContactForm(forms.ModelForm):
             'class': 'form-control',
             'name': 'phone_number', 
         }
+
+        self.fields['profile_picture'].widget.attrs={
+            'id': 'profile_picture',
+            'class': 'form-control',
+            'name': 'profile_picture', 
+        }
+
+        self.fields['website'].widget.attrs={
+            'id': 'website',
+            'class': 'form-control',
+            'name': 'website', 
+        }

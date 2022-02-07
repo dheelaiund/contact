@@ -1,3 +1,5 @@
+from ast import arg
+import os
 
 from django.conf import settings
 from django.forms import CharField
@@ -7,6 +9,14 @@ from django.core.validators import RegexValidator
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
+
+
+def getimagepath(request,filename):
+    
+    new_filename = str(request.user.username) + "_" + filename
+
+    return os.path.join('contact','images',new_filename)
+    
 
 
 class UserContactModel(models.Model):
@@ -28,6 +38,9 @@ class UserContactModel(models.Model):
     address = models.CharField(max_length=125, blank=True)
     phone_number = models.CharField(max_length=15, validators=[
                                     phone_regex], blank=True)
+    website = models.URLField(null = True, blank = True)
+    profile_picture = models.ImageField(null = True, blank = True, upload_to = getimagepath, default = "contact/images/default.png")
+
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
