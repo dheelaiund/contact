@@ -36,12 +36,10 @@ class UserAllContacts(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contacts'] = context['contacts'].filter(user=self.request.user)
-
         return context
 
-    # def get_queryset(self):
-    #     return models.UserContactModel.objects.filter(user=self.request.user)
+    def get_queryset(self):
+        return models.UserContactModel.objects.filter(user=self.request.user)
         
 
 
@@ -49,6 +47,9 @@ class ContactDetails(LoginRequiredMixin,DetailView):
     model = models.UserContactModel
     template_name = "contact/contact_details.html"
     context_object_name = "cd"
+
+    def get_queryset(self):
+        return models.UserContactModel.objects.filter(user=self.request.user)
 
 
 class CreateContact(LoginRequiredMixin,CreateView):
