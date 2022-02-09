@@ -5,6 +5,7 @@ from django.views.generic import (
     DetailView,
     ListView,
     CreateView,
+    UpdateView,
 )
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -63,3 +64,10 @@ class CreateContact(LoginRequiredMixin,CreateView):
         self.object.user = self.request.user
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
+
+class UpdateContact(LoginRequiredMixin, UpdateView):
+    model = models.UserContactModel
+    template_name = "contact/update.html"
+    form_class = forms.ContactUpdateForm
+    # fields = ('firstname', 'lastname', 'nickname', 'gender', 'address', 'phone_number', 'website')
+    success_url = reverse_lazy('contact:displaycontacts')

@@ -10,5 +10,7 @@ urlpatterns = [
     re_path(r"^details/(?P<username>[-\w]+)/(?P<pk>\d+)/$",
             views.ContactDetails.as_view(), name="contactdetails"),
     re_path(r"create/$", views.CreateContact.as_view(), name="create"),
+    re_path(r"^update/(?P<username>[-\w]+)/(?P<pk>\d+)/$",
+            views.UpdateContact.as_view(), name="update"),
 
 ]
