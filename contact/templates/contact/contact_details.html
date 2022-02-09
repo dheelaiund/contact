@@ -31,6 +31,13 @@
                             <td>Phone</td>
                             <td>{{cd.phone_number}}</td>
                         </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                <a class="btn btn-primary" href="{% url 'contact:update' cd.user cd.id %}">Update</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-primary">Delete</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 

@@ -18,7 +18,12 @@
         {% for eachcontact in contacts %}
         <div class="col">
             <div class="card p-3 mb-2 bg-warning text-dark" style="width: 20rem">
+                {% if eachcontact.profile_picture %}
                 <img src="{{eachcontact.profile_picture.url}}" class="card-img-top my-image" alt="..." />
+                {% else %}
+                <img src="" class="card-img-top my-image" alt="..." />
+                {% endif %}
+
                 <div class="card-body">
                     <h5 class="card-title">
                         <a style="text-decoration: none; color: red;"
