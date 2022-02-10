@@ -1,4 +1,6 @@
-{% extends 'contact/base.html' %} {% block base_content %}
+{% extends 'contact/base.html' %}
+{% load static %}
+{% block base_content %}
 <br>
 
 <div class="container">
@@ -6,7 +8,7 @@
         <div class="col">
             <div class="card p-3 mb-2 bg-warning text-dark" style="width: 15rem; height:350px;">
 
-                <img src="" class="card-img-top my-image" alt="..." />
+                <img src="{% static 'assets/img/addnew.jpg' %}" class="card-img-top my-image" alt="..." />
                 <div class="card-body">
                     <h5 class="card-title">
                         <a style="text-decoration: none; color: red;" href=" {% url 'contact:create' %}">Add New</a>
