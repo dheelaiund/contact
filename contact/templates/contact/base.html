@@ -12,11 +12,12 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>Hello, world!</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+    <title>ConGo</title>
 </head>
 
 <body style="background-color:#003B36; color:#FFFBBD;">
-    <nav class="navbar navbar-expand-md" style="background-color: #012622;">
+    <nav class="navbar navbar-expand-md " style="background-color: #012622;">
         <!-- <nav class="navbar navbar-light" style="background-color: #f4623a;"> -->
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">
@@ -24,7 +25,7 @@
                     class="d-inline-block align-top">
             </a>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="menu-list-right" id="navbarNav">
 
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}

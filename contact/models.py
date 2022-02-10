@@ -26,8 +26,7 @@ class UserContactModel(models.Model):
         ('Female', 'Female'),
     )
 
-    phone_regex = RegexValidator(
-        regex=r'^\+?1?\d{2,15}$', message="Phone number must contain only numbers. Up to 15 digits allowed.")
+    
 
     user = models.ForeignKey(
         User, related_name="foruser", on_delete=models.CASCADE)
@@ -36,9 +35,8 @@ class UserContactModel(models.Model):
     nickname = models.CharField(max_length=25, blank=True)
     gender = models.CharField(max_length=10, choices=avail_gender, blank=True)
     address = models.CharField(max_length=200, blank=True)
-    phone_number = models.CharField(max_length=15, validators=[
-                                    phone_regex], blank=True)
-    website = models.CharField(max_length=50, null = True, blank = True)
+    phone_number = models.CharField(max_length=15, blank=True)
+    website = models.CharField(max_length=50, default = "", blank = True)
     profile_picture = models.ImageField(null = True, blank = True, upload_to = getimagepath, default = "contact/images/default.png")
 
     created_at = models.DateTimeField(auto_now=True)
