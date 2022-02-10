@@ -59,4 +59,4 @@ class LoginUser(TemplateView):
 class LogoutUser(View):
     def get(self, request):
         logout(request)
-        return redirect('contact:index')
+        return redirect('accounts:loginuser')
