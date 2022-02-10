@@ -31,14 +31,14 @@ class UserContactModel(models.Model):
 
     user = models.ForeignKey(
         User, related_name="foruser", on_delete=models.CASCADE)
-    firstname = models.CharField(max_length=25)
-    lastname = models.CharField(max_length=25)
+    firstname = models.CharField(max_length=50)
+    lastname = models.CharField(max_length=50)
     nickname = models.CharField(max_length=25, blank=True)
-    gender = models.CharField(max_length=7, choices=avail_gender, blank=True)
-    address = models.CharField(max_length=125, blank=True)
+    gender = models.CharField(max_length=10, choices=avail_gender, blank=True)
+    address = models.CharField(max_length=200, blank=True)
     phone_number = models.CharField(max_length=15, validators=[
                                     phone_regex], blank=True)
-    website = models.URLField(null = True, blank = True)
+    website = models.CharField(max_length=50, null = True, blank = True)
     profile_picture = models.ImageField(null = True, blank = True, upload_to = getimagepath, default = "contact/images/default.png")
 
     created_at = models.DateTimeField(auto_now=True)

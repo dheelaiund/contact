@@ -6,6 +6,7 @@ from django.views.generic import (
     ListView,
     CreateView,
     UpdateView,
+    DeleteView,
 )
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -70,4 +71,9 @@ class UpdateContact(LoginRequiredMixin, UpdateView):
     template_name = "contact/update.html"
     form_class = forms.ContactUpdateForm
     # fields = ('firstname', 'lastname', 'nickname', 'gender', 'address', 'phone_number', 'website')
+    success_url = reverse_lazy('contact:displaycontacts')
+
+class DeleteContact(LoginRequiredMixin,DeleteView):
+    model = models.UserContactModel
+    template_name = "contact/confirm_delete.html"
     success_url = reverse_lazy('contact:displaycontacts')
