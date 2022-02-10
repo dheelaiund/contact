@@ -2,9 +2,9 @@
 <br>
 
 <div class="container">
-    <div class="row row-cols-3">
+    <div class="row row-cols-4">
         <div class="col">
-            <div class="card p-3 mb-2 bg-warning text-dark" style="width: 20rem">
+            <div class="card p-3 mb-2 bg-warning text-dark" style="width: 15rem; height:350px;">
 
                 <img src="" class="card-img-top my-image" alt="..." />
                 <div class="card-body">
@@ -17,7 +17,7 @@
         </div>
         {% for eachcontact in contacts %}
         <div class="col">
-            <div class="card p-3 mb-2 bg-warning text-dark" style="width: 20rem">
+            <div class="card p-3 mb-2 bg-warning text-dark" style="width: 15rem; height:350px;">
                 {% if eachcontact.profile_picture %}
                 <img src="{{eachcontact.profile_picture.url}}" class="card-img-top my-image" alt="..." />
                 {% else %}
