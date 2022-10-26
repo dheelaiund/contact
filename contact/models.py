@@ -2,6 +2,7 @@ from ast import arg
 import os
 
 from django.conf import settings
+from math import *
 from django.forms import CharField
 from django.urls import reverse
 from django.db import models
